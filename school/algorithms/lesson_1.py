@@ -14,9 +14,26 @@ class LinkedList:
         self.head: Optional[Node] = None
         self.tail: Optional[Node] = None
 
+    def __eq__(self, other: Any) -> bool:
+
+        if not isinstance(other, LinkedList):
+            raise TypeError
+
+        for n1, n2 in zip(self, other):
+            if n1.value != n2.value:
+                return False
+        return True
+
     def __iter__(self):
 
         return LinkedListIterator(self)
+
+    def add_in_start(self, item: Node) -> None:
+
+        if self.tail is None:
+            self.tail = item
+        item.next = self.head
+        self.head = item
 
     def add_in_tail(self, item):
         if self.head is None:
@@ -38,7 +55,7 @@ class LinkedList:
             node = node.next
         return None
 
-    def find_all(self, val: Any):
+    def find_all(self, val: Any) -> list[Node]:
 
         result: list[Node] = []
         node = self.head
@@ -49,26 +66,36 @@ class LinkedList:
 
         return result
 
-    def delete(self, val: Any, all: bool = False):
+    def delete(self, val: Any, all: bool = False) -> None:
 
         if self.head is None:
             return
 
         prev_node = self.head
-        while prev_node.next is not None:
-            node = prev_node.next
-            if prev_node.next.value == val:
-                prev_node.next = node.next
+        node = self.head
+
+        while node is not None:
+            if node.value == val:
+                if node is self.head:
+                    self.head = node.next
+                    prev_node = self.head
+                    node = self.head
+                else:
+                    prev_node.next = node.next
+                    node = node.next
+
                 if not all:
                     return
-            prev_node = node
+            else:
+                prev_node = node
+                node = node.next
 
-    def clean(self):
+    def clean(self) -> None:
 
         self.head = None
         self.tail = None
 
-    def len(self):
+    def len(self) -> int:
 
         count = 0
         node = self.head
@@ -78,16 +105,12 @@ class LinkedList:
 
         return count
 
-    def insert(self, afterNode: Optional[Node], newNode: Node):
+    def insert(self, afterNode: Optional[Node], newNode: Node) -> None:
 
         if afterNode is None:
-            newNode.next, self.head = self.head, newNode
-            # newNode.next = self.head
-            # self.head = newNode
+            self.add_in_start(newNode)
         else:
             newNode.next, afterNode.next = afterNode.next, newNode
-            # newNode.next = afterNode.next
-            # afterNode.next = newNode
 
 
 class LinkedListIterator:

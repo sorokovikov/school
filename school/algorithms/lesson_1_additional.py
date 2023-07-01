@@ -17,3 +17,20 @@ def sum_linked_lists(ll1: LinkedList, ll2: LinkedList) -> Optional[LinkedList]:
     for n1, n2 in zip(ll1, ll2):
         result.add_in_tail(sum_nodes(n1, n2))
     return result
+
+
+ll1 = LinkedList()
+ll1.add_in_tail(Node(100))
+ll1.add_in_tail(Node(100))
+ll1.add_in_tail(Node(100))
+ll1.add_in_tail(Node(100))
+
+n1 = Node(1)
+n2 = Node(2)
+n3 = n1
+
+print(id(n1), id(n2))
+
+n1, n2 = n2, n1
+
+print(id(n1), id(n2))
