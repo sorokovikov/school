@@ -8,147 +8,255 @@ class TestLessonOne(TestCase):
     def setUp(self) -> None:
 
         self.ll = LinkedList()
-        self.ll.add_in_tail(Node(100))
-        self.ll.add_in_tail(Node(100))
-        self.ll.add_in_tail(Node(200))
-        self.ll.add_in_tail(Node(300))
-        self.ll.add_in_tail(Node(300))
-        self.ll.add_in_tail(Node(100))
+        self.ll.add_in_tail(Node(1))
+        self.ll.add_in_tail(Node(1))
+        self.ll.add_in_tail(Node(2))
+        self.ll.add_in_tail(Node(2))
+        self.ll.add_in_tail(Node(3))
+        self.ll.add_in_tail(Node(4))
+        self.ll.add_in_tail(Node(4))
+        self.ll.add_in_tail(Node(4))
 
-    def test_delete_200(self):
+        self.one_element_ll = LinkedList()
+        self.one_element_ll.add_in_tail(Node(-1))
 
-        expected_ll = LinkedList()
-        expected_ll.add_in_tail(Node(100))
-        expected_ll.add_in_tail(Node(100))
-        expected_ll.add_in_tail(Node(300))
-        expected_ll.add_in_tail(Node(300))
-        expected_ll.add_in_tail(Node(100))
+        self.empty_ll = LinkedList()
 
-        self.ll.delete(200)
-        self.assertEqual(self.ll, expected_ll)
-
-    def test_delete_all_100(self):
+    def test_delete_in_start(self):
 
         expected_ll = LinkedList()
-        expected_ll.add_in_tail(Node(200))
-        expected_ll.add_in_tail(Node(300))
-        expected_ll.add_in_tail(Node(300))
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(3))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
 
-        self.ll.delete(100, True)
-        self.assertEqual(self.ll, expected_ll)
+        self.ll.delete(1)
+        self.assertEqual(expected_ll, self.ll)
 
-    def test_delete_200_and_300(self):
-
-        expected_ll = LinkedList()
-        expected_ll.add_in_tail(Node(100))
-        expected_ll.add_in_tail(Node(100))
-        expected_ll.add_in_tail(Node(300))
-        expected_ll.add_in_tail(Node(100))
-
-        self.ll.delete(200)
-        self.ll.delete(300)
-
-        self.assertEqual(self.ll, expected_ll)
-
-    def test_delete_all_300(self):
+    def test_delete_all_in_start(self):
 
         expected_ll = LinkedList()
-        expected_ll.add_in_tail(Node(100))
-        expected_ll.add_in_tail(Node(100))
-        expected_ll.add_in_tail(Node(200))
-        expected_ll.add_in_tail(Node(100))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(3))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
 
-        self.ll.delete(300, True)
+        self.ll.delete(1, True)
+        self.assertEqual(expected_ll, self.ll)
 
-        self.assertEqual(self.ll, expected_ll)
-
-    def test_delete_9999(self):
+    def test_delete_in_middle(self):
 
         expected_ll = LinkedList()
-        expected_ll.add_in_tail(Node(100))
-        expected_ll.add_in_tail(Node(100))
-        expected_ll.add_in_tail(Node(200))
-        expected_ll.add_in_tail(Node(300))
-        expected_ll.add_in_tail(Node(300))
-        expected_ll.add_in_tail(Node(100))
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(3))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
 
-        self.ll.delete(9999, True)
+        self.ll.delete(2)
+        self.assertEqual(expected_ll, self.ll)
 
-        self.assertEqual(self.ll, expected_ll)
+    def test_delete_all_in_middle(self):
+
+        expected_ll = LinkedList()
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(3))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
+
+        self.ll.delete(2, True)
+        self.assertEqual(expected_ll, self.ll)
+
+    def test_delete_in_tail(self):
+
+        expected_ll = LinkedList()
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(3))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
+
+        self.ll.delete(4)
+        self.assertEqual(expected_ll, self.ll)
+
+    def test_delete_all_in_tail(self):
+
+        expected_ll = LinkedList()
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(3))
+
+        self.ll.delete(4, True)
+        self.assertEqual(expected_ll, self.ll)
+
+    def test_delete_multiple(self):
+
+        expected_ll = LinkedList()
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(3))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
+
+        self.ll.delete(1)
+        self.ll.delete(2, True)
+        self.ll.delete(4)
+        self.assertEqual(expected_ll, self.ll)
+
+    def test_delete_nonexistent(self):
+
+        expected_ll = LinkedList()
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(3))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
+
+        self.ll.delete(999, True)
+        self.assertEqual(expected_ll, self.ll)
+
+    def test_delete_everything(self):
+
+        expected_ll = LinkedList()
+
+        self.ll.delete(1, True)
+        self.ll.delete(2, True)
+        self.ll.delete(3, True)
+        self.ll.delete(4, True)
+        self.assertEqual(expected_ll, self.ll)
+
+        self.one_element_ll.delete(-1)
+        self.assertEqual(expected_ll, self.one_element_ll)
 
     def test_clean(self):
 
-        self.ll.clean()
+        expected_ll = LinkedList()
 
-        self.assertEqual(self.ll.len(), 0)
+        self.ll.clean()
+        self.assertEqual(expected_ll, self.ll)
+
+        self.one_element_ll.clean()
+        self.assertEqual(expected_ll, self.one_element_ll)
+
+        self.empty_ll.clean()
+        self.assertEqual(expected_ll, self.empty_ll)
 
     def test_len(self):
 
-        self.assertEqual(self.ll.len(), 6)
+        self.assertEqual(8, self.ll.len())
 
-        self.ll.delete(200)
-        self.assertEqual(self.ll.len(), 5)
+        self.ll.delete(1)
+        self.assertEqual(7, self.ll.len())
 
-        self.ll.delete(100, True)
-        self.assertEqual(self.ll.len(), 2)
+        self.ll.delete(3, True)
+        self.assertEqual(6, self.ll.len())
+
+        self.ll.delete(4, True)
+        self.assertEqual(3, self.ll.len())
+
+        self.assertEqual(1, self.one_element_ll.len())
+        self.assertEqual(0, self.empty_ll.len())
 
     def test_find_all(self):
 
-        found_node = self.ll.find_all(200)
-        self.assertEqual(len(found_node), 1)
+        found_nodes = self.ll.find_all(1)
+        self.assertEqual(2, len(found_nodes))
 
-        found_nodes = self.ll.find_all(100)
-        self.assertEqual(len(found_nodes), 3)
+        found_nodes = self.ll.find_all(3)
+        self.assertEqual(1, len(found_nodes))
+
+        found_nodes = self.ll.find_all(4)
+        self.assertEqual(3, len(found_nodes))
+
+        found_nodes = self.ll.find_all(999)
+        self.assertEqual(0, len(found_nodes))
+
+        found_nodes = self.one_element_ll.find_all(0)
+        self.assertEqual(0, len(found_nodes))
+
+        found_nodes = self.one_element_ll.find_all(-1)
+        self.assertEqual(1, len(found_nodes))
+
+        found_nodes = self.empty_ll.find_all(0)
+        self.assertEqual(0, len(found_nodes))
 
     def test_insert_in_start(self):
 
         expected_ll = LinkedList()
         expected_ll.add_in_tail(Node(999))
+        expected_ll.add_in_tail(Node(-100))
         expected_ll.add_in_tail(Node(1))
-        expected_ll.add_in_tail(Node(100))
-        expected_ll.add_in_tail(Node(100))
-        expected_ll.add_in_tail(Node(200))
-        expected_ll.add_in_tail(Node(300))
-        expected_ll.add_in_tail(Node(300))
-        expected_ll.add_in_tail(Node(100))
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(3))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
 
-        self.ll.insert(None, Node(1))
+        self.ll.insert(None, Node(-100))
         self.ll.insert(None, Node(999))
-
-        self.assertEqual(self.ll, expected_ll)
+        self.assertEqual(expected_ll, self.ll)
 
     def test_insert_in_middle(self):
 
         expected_ll = LinkedList()
-        expected_ll.add_in_tail(Node(100))
-        expected_ll.add_in_tail(Node(100))
-        expected_ll.add_in_tail(Node(200))
         expected_ll.add_in_tail(Node(1))
-        expected_ll.add_in_tail(Node(300))
-        expected_ll.add_in_tail(Node(300))
-        expected_ll.add_in_tail(Node(100))
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(3))
+        expected_ll.add_in_tail(Node(999))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
 
-        found_node = self.ll.find(200)
-        self.ll.insert(found_node, Node(1))
-        self.assertEqual(self.ll, expected_ll)
+        found_node = self.ll.find(3)
+        self.ll.insert(found_node, Node(999))
+        self.assertEqual(expected_ll, self.ll)
 
     def test_insert_in_tail(self):
 
         expected_ll = LinkedList()
-        expected_ll.add_in_tail(Node(100))
-        expected_ll.add_in_tail(Node(100))
-        expected_ll.add_in_tail(Node(200))
-        expected_ll.add_in_tail(Node(300))
-        expected_ll.add_in_tail(Node(300))
-        expected_ll.add_in_tail(Node(100))
         expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(1))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(2))
+        expected_ll.add_in_tail(Node(3))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
+        expected_ll.add_in_tail(Node(4))
         expected_ll.add_in_tail(Node(999))
+        expected_ll.add_in_tail(Node(-100))
 
-        found_nodes = self.ll.find_all(100)
-        node_1 = Node(1)
-        node_2 = Node(999)
+        found_nodes = self.ll.find_all(4)
+        node_1 = Node(999)
+        node_2 = Node(-100)
 
         self.ll.insert(found_nodes[2], node_1)
         self.ll.insert(node_1, node_2)
 
-        self.assertEqual(self.ll, expected_ll)
+        self.assertEqual(expected_ll, self.ll)
+
+    def test_insert_into_empty(self):
+
+        expected_ll = LinkedList()
+        expected_ll.add_in_tail(Node(999))
+
+        self.empty_ll.insert(None, Node(999))
+        self.assertEqual(expected_ll, self.empty_ll)
