@@ -2,9 +2,9 @@ from typing import Any, Optional
 
 
 class Node:
-
-    def __init__(self, v: Any):
+    def __init__(self, v):
         self.value = v
+        self.prev: Optional[Node] = None
         self.next: Optional[Node] = None
 
     def __eq__(self, other: Any):
@@ -21,15 +21,14 @@ class Node:
         return True
 
 
-class LinkedList:
-
+class LinkedList2:
     def __init__(self):
         self.head: Optional[Node] = None
         self.tail: Optional[Node] = None
 
     def __eq__(self, other: Any) -> bool:
 
-        if not isinstance(other, LinkedList):
+        if not isinstance(other, LinkedList2):
             raise TypeError
 
         if self.len() != other.len():
@@ -53,66 +52,89 @@ class LinkedList:
 
     def __iter__(self):
 
-        return LinkedListIterator(self)
+        return LinkedList2Iterator(self)
 
-    def add_in_start(self, item: Node) -> None:
-
-        if self.tail is None:
-            self.tail = item
-        item.next = self.head
-        self.head = item
-
-    def add_in_tail(self, item):
+    def add_in_tail(self, item: Node) -> None:
         if self.head is None:
             self.head = item
+            item.prev = None
+            item.next = None
         else:
             self.tail.next = item
+            item.prev = self.tail
         self.tail = item
 
-    def print_all_nodes(self):
-        node = self.head
-        while node != None:
-            node = node.next
+    def find(self, val: Any) -> Optional[Node]:
 
-    def find(self, val):
-        node = self.head
+        # go from head
+        # node = self.head
+        # while node is not None:
+        #     if node.value == val:
+        #         return node
+        #     node = node.next
+
+        # go from tail
+        node = self.tail
         while node is not None:
             if node.value == val:
                 return node
-            node = node.next
+            node = node.prev
         return None
 
     def find_all(self, val: Any) -> list[Node]:
 
+        # go from head
+        # result: list[Node] = []
+        # node = self.head
+        # while node is not None:
+        #     if node.value == val:
+        #         result.append(node)
+        #     node = node.next
+
+        # go from tail
         result: list[Node] = []
-        node = self.head
+        node = self.tail
         while node is not None:
             if node.value == val:
                 result.append(node)
-            node = node.next
-
+            node = node.prev
         return result
 
     def delete(self, val: Any, all: bool = False) -> None:
 
-        if self.head is None:
+        if self.len() == 0:
             return
 
-        prev_node = None
         node = self.head
-
         while node is not None:
             if node.value == val:
-                if prev_node:
-                    prev_node.next = node.next
+                # if node is self.head:
+                #     if node.next:
+                #         node.next.prev = None
+                #     self.head = node.next
+                #
+                # else:
+                if node.prev:
+                    node.prev.next = node.next
                 else:
+                    if node.next:
+                        node.next.prev = None
                     self.head = node.next
-                if node is self.tail:
-                    self.tail = prev_node if prev_node else None
+                if node.next:
+                    node.next.prev = node.prev
+                else:
+                    if node.prev: # -> 3
+                        node.prev.next = None
+                    self.tail = node.prev
+
+                # correct
+                # if node is self.tail:
+                #     if node.prev:
+                #         node.prev.next = None
+                #     self.tail = node.prev
+
                 if not all:
                     return
-            else:
-                prev_node = node
             node = node.next
 
     def clean(self) -> None:
@@ -122,27 +144,46 @@ class LinkedList:
 
     def len(self) -> int:
 
+        # go from head
+        # count = 0
+        # node = self.head
+        # while node is not None:
+        #     count += 1
+        #     node = node.next
+
+        # go from tail
         count = 0
-        node = self.head
+        node = self.tail
         while node is not None:
             count += 1
-            node = node.next
-
+            node = node.prev
         return count
 
     def insert(self, afterNode: Optional[Node], newNode: Node) -> None:
 
         if afterNode is None:
-            self.add_in_start(newNode)
+            if self.len() == 0:
+                self.add_in_head(newNode)
+            else:
+                self.add_in_tail(newNode)
         else:
-            if afterNode is self.tail:
-                self.tail = newNode
-            newNode.next, afterNode.next = afterNode.next, newNode
+            newNode.prev = afterNode
+            newNode.next = afterNode.next
+            afterNode.next.prev = newNode
+            afterNode.next = newNode
+
+    def add_in_head(self, newNode: Node) -> None:
+
+        if self.tail is None:
+            self.tail = newNode
+        newNode.next = self.head
+        newNode.prev = None
+        self.head = newNode
 
 
-class LinkedListIterator:
+class LinkedList2Iterator:
 
-    def __init__(self, linked_list: LinkedList):
+    def __init__(self, linked_list: LinkedList2):
         self.__linked_list = linked_list
         self.__current_node = self.__linked_list.head
 
