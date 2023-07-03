@@ -231,10 +231,11 @@ class TestLessonOne(TestCase):
         expected_ll.add_in_tail(Node(999))
         expected_ll.add_in_tail(Node(-100))
 
-        found_node = self.ll.find_all(4)[2]
-        node = Node(-100)
-        expected_ll.insert(found_node, Node(999))
-        expected_ll.insert(node, Node(-100))
+        found_node = self.ll.find_all(4)[0]
+        node = Node(999)
+        self.ll.insert(found_node, node)
+        self.ll.insert(node, Node(-100))
+        self.assertEqual(expected_ll, self.ll)
 
     def test_insert_in_one_element(self):
 
