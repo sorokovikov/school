@@ -48,6 +48,7 @@ class LinkedList2:
         sequence = ", ".join([str(node.value) for node in self])
         return f"Head: {self.head.value if self.head else None}; " \
                f"Tail: {self.tail.value if self.tail else None}; " \
+               f"Len: {self.len()}; " \
                f"Sequence: {sequence if sequence else 'None'}"
 
     def __iter__(self):
@@ -67,18 +68,18 @@ class LinkedList2:
     def find(self, val: Any) -> Optional[Node]:
 
         # go from head
-        # node = self.head
-        # while node is not None:
-        #     if node.value == val:
-        #         return node
-        #     node = node.next
-
-        # go from tail
-        node = self.tail
+        node = self.head
         while node is not None:
             if node.value == val:
                 return node
-            node = node.prev
+            node = node.next
+
+        # go from tail
+        # node = self.tail
+        # while node is not None:
+        #     if node.value == val:
+        #         return node
+        #     node = node.prev
         return None
 
     def find_all(self, val: Any) -> list[Node]:
@@ -157,6 +158,7 @@ class LinkedList2:
         while node is not None:
             count += 1
             node = node.prev
+
         return count
 
     def insert(self, afterNode: Optional[Node], newNode: Node) -> None:
@@ -169,13 +171,18 @@ class LinkedList2:
         else:
             newNode.prev = afterNode
             newNode.next = afterNode.next
-            afterNode.next.prev = newNode
+            if afterNode.next:
+                afterNode.next.prev = newNode
+            else:
+                self.tail = newNode
             afterNode.next = newNode
 
     def add_in_head(self, newNode: Node) -> None:
 
         if self.tail is None:
             self.tail = newNode
+        if self.head is not None:
+            self.head.prev = newNode
         newNode.next = self.head
         newNode.prev = None
         self.head = newNode
