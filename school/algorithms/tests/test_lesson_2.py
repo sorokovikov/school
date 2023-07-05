@@ -3,7 +3,7 @@ from unittest import TestCase
 from algorithms.lesson_2 import LinkedList2, Node
 
 
-class TestLessonOne(TestCase):
+class TestLessonTwo(TestCase):
 
     def setUp(self) -> None:
 
