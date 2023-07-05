@@ -57,6 +57,10 @@ class DynArray:
         if self.count < int(self.capacity / 2) and new_capacity > 16:
             self.resize(new_capacity)
 
+    def get_values(self) -> list:
+
+        return [self.array[i] for i in range(self.count)]
+
     def find_all(self, val):
 
         count = 0
