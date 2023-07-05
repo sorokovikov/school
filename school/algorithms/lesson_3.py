@@ -2,9 +2,6 @@ import ctypes
 from typing import Any
 
 
-MINIMUM_CAPACITY = 16
-
-
 class DynArray:
 
     def __init__(self):
@@ -57,7 +54,7 @@ class DynArray:
 
         self.count -= 1
         new_capacity = int(self.capacity / 1.5)
-        if self.count < int(self.capacity / 2) and new_capacity > MINIMUM_CAPACITY:
+        if self.count < int(self.capacity / 2) and new_capacity > 16:
             self.resize(new_capacity)
 
     def find_all(self, val):
