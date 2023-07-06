@@ -48,11 +48,13 @@ class TestLessonThree(TestCase):
         self.da.insert(0, 999)
         self.da.insert(0, -100)
         self.assertEqual(expected_value, self.da.get_values())
+        self.assertEqual(7, self.da.count)
 
         expected_value = [-100, 999]
         self.empty_da.insert(0, 999)
         self.empty_da.insert(0, -100)
         self.assertEqual(expected_value, self.empty_da.get_values())
+        self.assertEqual(2, self.empty_da.count)
 
     def test_insert_buffer_increase(self):
 
@@ -75,6 +77,7 @@ class TestLessonThree(TestCase):
         self.big_da.delete(1)
         self.assertEqual(expected_values, self.big_da.get_values())
         self.assertEqual(64, self.big_da.capacity)
+        self.assertEqual(32, self.big_da.count)
 
     def test_delete_buffer_decrease(self):
 
@@ -84,6 +87,14 @@ class TestLessonThree(TestCase):
         self.big_da.delete(0)
         self.assertEqual(expected_values, self.big_da.get_values())
         self.assertEqual(42, self.big_da.capacity)
+        self.assertEqual(31, self.big_da.count)
+
+    def test_delete_until_minimum_buffer(self):
+
+        for _ in range(30):
+            self.big_da.delete(0)
+        self.assertEqual(16, self.big_da.capacity)
+        print(self.big_da.get_values())
 
     def test_delete_raise_error(self):
 
