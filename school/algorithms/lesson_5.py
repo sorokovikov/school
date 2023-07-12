@@ -24,12 +24,9 @@ class LinkedListDummyNode:
         self.dummy_node.next = self.dummy_node
         self.dummy_node.prev = self.dummy_node
 
-    def print_all(self):
+    def get_head(self) -> Optional[Node]:
 
-        node = self.dummy_node.next
-        while node is not self.dummy_node:
-            print(node.value)
-            node = node.next
+        return self.dummy_node.next if self.dummy_node.next is not self.dummy_node else None
 
     def add_in_head(self, newNode: Node):
 
@@ -118,15 +115,27 @@ class LinkedListDummyNode:
 
 
 class Queue:
+
     def __init__(self) -> None:
+
         self.queue = LinkedListDummyNode()
 
     def enqueue(self, item: Any) -> None:
+
         self.queue.add_in_tail(Node(item))
 
-    def dequeue(self) -> None:
-        self.
-        return None # если очередь пустая
+    def dequeue(self) -> Optional[Any]:
 
-    def size(self):
-        return 0 # размер очереди
+        head = self.queue.get_head()
+        if self.size() == 0 or head is None:
+            return None
+        self.queue.delete(head.value)
+        return head.value
+
+    def size(self) -> int:
+
+        return self.queue.len()
+
+    def get_values(self) -> list[Any]:
+
+        return self.queue.get_nodes_values()
