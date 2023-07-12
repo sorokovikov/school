@@ -3,7 +3,7 @@ from unittest import TestCase
 from algorithms.lesson_4_additional import (
     check_parentheses,
     convert_postfix_notation_to_stack,
-    postfix_notation,
+    calculate_postfix_notation,
     StackHead,
 )
 
@@ -110,10 +110,10 @@ class TestLesson4Additional(TestCase):
     def test_postfix_notation(self):
 
         s = convert_postfix_notation_to_stack("8 2 + 5 * 9 + =")
-        self.assertEqual(59, postfix_notation(s))
+        self.assertEqual(59, calculate_postfix_notation(s))
 
         s = convert_postfix_notation_to_stack("99 -1 * 100 + =")
-        self.assertEqual(1, postfix_notation(s))
+        self.assertEqual(1, calculate_postfix_notation(s))
 
         s = convert_postfix_notation_to_stack("100500 100500 + 2 * =")
-        self.assertEqual(402000, postfix_notation(s))
+        self.assertEqual(402000, calculate_postfix_notation(s))

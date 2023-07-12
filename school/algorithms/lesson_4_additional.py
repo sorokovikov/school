@@ -63,7 +63,7 @@ def check_parentheses(string: str) -> bool:
     return False
 
 
-def postfix_notation(s1: StackHead) -> Optional[int]:
+def calculate_postfix_notation(s1: StackHead) -> Optional[int]:
 
     operations = {
         "+": lambda x, y: x + y,
