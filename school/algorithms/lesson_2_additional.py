@@ -179,6 +179,10 @@ class LinkedListDummyNode:
             print(node.value)
             node = node.next
 
+    def get_head(self) -> Optional[Node]:
+
+        return self.dummy_node.next if self.dummy_node.next is not self.dummy_node else None
+
     def add_in_head(self, newNode: Node):
 
         newNode.next = self.dummy_node.next
