@@ -67,5 +67,21 @@ class TestLesson5(TestCase):
         self.q.enqueue(100)
         self.assertEqual(5, self.q.size())
 
+        self.q.dequeue()
+        self.q.dequeue()
+        self.q.dequeue()
+        self.q.dequeue()
+        self.q.dequeue()
+        self.q.dequeue()
+        self.assertEqual(0, self.q.size())
+
         self.empty_q.enqueue(100)
         self.assertEqual(1, self.empty_q.size())
+
+    def test_stress(self):
+
+        for i in range(10000):
+            self.q.enqueue(i)
+
+        for i in range(10000):
+            self.q.enqueue(self.q.dequeue())
