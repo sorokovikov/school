@@ -117,9 +117,6 @@ class QueueWithStacks:
 
     def get_values(self) -> list[Any]:
 
-        if self.stack1.size() == 0 and self.stack2.size() == 0:
-            return []
-
         result = self.stack2.get_values()
         result.extend(reversed(self.stack1.get_values()))
         return result
