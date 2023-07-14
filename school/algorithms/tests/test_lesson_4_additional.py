@@ -105,6 +105,7 @@ class TestLesson4Additional(TestCase):
         self.assertFalse(check_parentheses("(()"))
         self.assertFalse(check_parentheses("())("))
         self.assertFalse(check_parentheses("(((((()))))"))
+        self.assertFalse(check_parentheses("(()((()())())()("))
         self.assertFalse(check_parentheses("()((())"))
 
     def test_postfix_notation(self):

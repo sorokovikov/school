@@ -40,25 +40,18 @@ class StackHead:
 def check_parentheses(string: str) -> bool:
 
     stack = Stack()
-    for char in string:
-        stack.push(char)
 
-    char = stack.pop()
-    if char == "(":
-        return False
-
-    count = 1
-    while char is not None:
-        char = stack.pop()
-        if char == "(":
-            count -= 1
-        if char == ")":
-            count += 1
-
-        if count < 0:
+    for index, char in enumerate(string):
+        if index == 0 and char == ")":
             return False
+        if char == "(":
+            stack.push(char)
+        if char == ")" and stack.peek() is None:
+            return False
+        if char == ")":
+            stack.pop()
 
-    if count == 0:
+    if stack.size() == 0:
         return True
     return False
 
@@ -79,7 +72,9 @@ def calculate_postfix_notation(s1: StackHead) -> Optional[int]:
             s2.push(int(elem))
         except ValueError:
             if elem in ("+", "*"):
-                s2.push(operations.get(elem)(s2.pop(), s2.pop()))
+                y = s2.pop()
+                x = s2.pop()
+                s2.push(operations.get(elem)(x, y))
             if elem == "=":
                 return s2.pop()
     return None
