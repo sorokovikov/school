@@ -69,10 +69,9 @@ class Stack:
 
     def pop(self) -> Optional[Any]:
 
-        head = self.stack.pop_head()
-        if head is None:
+        if self.size() == 0:
             return None
-        return head.value
+        return self.stack.pop_head().value
 
     def push(self, value: Any) -> None:
 
@@ -80,9 +79,9 @@ class Stack:
 
     def peek(self) -> Optional[Any]:
 
-        head = self.stack.get_head()
-        if self.size() == 0 or head is None:
+        if self.size() == 0:
             return None
+        head = self.stack.get_head()
         return head.value
 
     def get_values(self) -> list[Any]:
