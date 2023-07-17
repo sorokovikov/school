@@ -1,7 +1,6 @@
 from typing import Any, Optional
 
 
-
 class Node:
     def __init__(self, v):
         self.value = v
@@ -16,13 +15,6 @@ class LinkedListDummyNode:
         self.dummy_node.next = self.dummy_node
         self.dummy_node.prev = self.dummy_node
         self.count = 0
-
-    def print_all(self):
-
-        node = self.dummy_node.next
-        while node is not self.dummy_node:
-            print(node.value)
-            node = node.next
 
     def get_head(self) -> Optional[Node]:
 
