@@ -148,3 +148,5 @@ class TestLesson6(TestCase):
         for i in range(10000):
             self.d.addTail(self.d.removeFront())
             self.assertEqual(10006, self.d.size())
+        for i in range(10000):
+            self.d.addFront(self.d.removeTail())
