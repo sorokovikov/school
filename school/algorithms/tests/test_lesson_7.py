@@ -8,12 +8,12 @@ class TestOrderedList(TestCase):
     def setUp(self) -> None:
 
         self.ol = OrderedList(True)
-        self.ol.add(999)
-        self.ol.add(100)
-        self.ol.add(500)
-        self.ol.add(345)
-        self.ol.add(100000)
-        self.ol.add(1)
+        # self.ol.add(999)
+        # self.ol.add(100)
+        # self.ol.add(500)
+        # self.ol.add(345)
+        # self.ol.add(100000)
+        # self.ol.add(1)
 
     def test_len(self) -> None:
 
@@ -41,11 +41,23 @@ class TestOrderedList(TestCase):
 
         self.ol.add(100500)
         self.assertIsNotNone(self.ol.find(100500))
+        self.assertEqual([1, 100, 345, 500, 999, 100000, 100500], self.ol.get_nodes_values())
 
     def test_delete(self) -> None:
 
         self.ol.delete(999)
         self.assertIsNone(self.ol.find(999))
+        self.assertEqual(1, self.ol.head.value)
+        self.assertEqual(100000, self.ol.tail.value)
+        self.assertEqual([1, 100, 345, 500, 100000], self.ol.get_nodes_values())
+
+        self.ol.delete(1)
+        self.ol.delete(100000)
+        self.assertIsNone(self.ol.find(1))
+        self.assertIsNone(self.ol.find(100000))
+        self.assertEqual(100, self.ol.head.value)
+        self.assertEqual(500, self.ol.tail.value)
+        self.assertEqual([100, 345, 500], self.ol.get_nodes_values())
 
     def test_add(self) -> None:
 

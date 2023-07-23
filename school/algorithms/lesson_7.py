@@ -78,16 +78,26 @@ class OrderedList:
 
     def delete(self, val: Any) -> None:
 
-        if self.len() == 0:
+        node = self.find(val)
+
+        if node is None:
             return
 
-        node = self.head
-        while node is not None:
-            if self.compare(node.value, val) == 0:
-                node.prev.next = node.next
-                self.__count -= 1
-                return
-            node = node.next
+        if node is self.head and node is self.tail:
+            self.clean(self.__ascending)
+            return
+
+        if node is not self.head and node is not self.tail:
+            node.prev.next = node.next
+            node.next.prev = node.prev
+        if node is self.head:
+            node.next.prev = None
+            self.head = node.next
+        if node is self.tail:
+            node.prev.next = None
+            self.tail = node.prev
+
+        self.__count -= 1
 
     def clean(self, asc: bool) -> None:
 
