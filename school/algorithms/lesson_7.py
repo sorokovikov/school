@@ -1,3 +1,4 @@
+from itertools import zip_longest
 from typing import Any, Optional
 
 
@@ -128,11 +129,19 @@ class OrderedStringList(OrderedList):
     def __init__(self, asc: bool):
         super(OrderedStringList, self).__init__(asc)
 
-    def compare(self, v1: str, v2: str):
+    def compare(self, v1: str, v2: str) -> int:
         stripped_v1 = v1.lstrip().rstrip()
         stripped_v2 = v2.lstrip().rstrip()
-        if len(stripped_v1) < len(stripped_v2):
-            return -1
-        if len(stripped_v1) > len(stripped_v2):
-            return 1
+
+        for char_1, char_2 in zip_longest(stripped_v1, stripped_v2):
+            if char_1 is None:
+                return -1
+            if char_2 is None:
+                return 1
+            char_1_ord = ord(char_1)
+            char_2_ord = ord(char_2)
+            compare_result = super().compare(char_1_ord, char_2_ord)
+            if compare_result == 0:
+                continue
+            return compare_result
         return 0

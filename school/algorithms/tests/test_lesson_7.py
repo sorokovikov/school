@@ -210,3 +210,114 @@ class TestOrderedListDesc(TestCase):
         self.assertEqual(5, self.ol.len())
         self.assertEqual(1000, self.ol.head.value)
         self.assertEqual(1, self.ol.tail.value)
+
+
+class TestOrderedStringList(TestCase):
+
+    def setUp(self) -> None:
+
+        self.osl = OrderedStringList(True)
+        self.osl.add("hello")
+        self.osl.add("world")
+        self.osl.add("foo")
+        self.osl.add("bar")
+        self.osl.add("baa")
+        self.osl.add("   baar   ")
+        self.osl.add("   ba  ar   ")
+
+    def test_get_values(self):
+
+        self.assertEqual(["   ba  ar   ", "baa", "   baar   ", "bar", "foo", "hello", "world"], self.osl.get_nodes_values())
+        self.assertEqual(7, self.osl.len())
+        self.assertEqual("   ba  ar   ", self.osl.head.value)
+        self.assertEqual("world", self.osl.tail.value)
+
+    def test_add_in_head(self):
+
+        self.osl.add("  aaaa")
+        self.assertEqual(8, self.osl.len())
+        self.assertEqual(["  aaaa", "   ba  ar   ", "baa", "   baar   ", "bar", "foo", "hello", "world"], self.osl.get_nodes_values())
+        self.assertEqual("  aaaa", self.osl.head.value)
+        self.assertEqual("world", self.osl.tail.value)
+
+    def test_add_in_tail(self):
+
+        self.osl.add("yyyy  ")
+        self.assertEqual(8, self.osl.len())
+        self.assertEqual(["   ba  ar   ", "baa", "   baar   ", "bar", "foo", "hello", "world", "yyyy  "], self.osl.get_nodes_values())
+        self.assertEqual("   ba  ar   ", self.osl.head.value)
+        self.assertEqual("yyyy  ", self.osl.tail.value)
+
+    def test_delete_head(self):
+
+        self.osl.delete("   ba  ar   ")
+        self.assertEqual(6, self.osl.len())
+        self.assertEqual(["baa", "   baar   ", "bar", "foo", "hello", "world"], self.osl.get_nodes_values())
+        self.assertIsNone(self.osl.find("   ba  ar   "))
+        self.assertEqual("baa", self.osl.head.value)
+        self.assertEqual("world", self.osl.tail.value)
+
+    def test_delete_tail(self):
+
+        self.osl.delete("world")
+        self.assertEqual(6, self.osl.len())
+        self.assertEqual(["   ba  ar   ", "baa", "   baar   ", "bar", "foo", "hello"], self.osl.get_nodes_values())
+        self.assertIsNone(self.osl.find("world"))
+        self.assertEqual("   ba  ar   ", self.osl.head.value)
+        self.assertEqual("hello", self.osl.tail.value)
+
+
+class TestOrderedStringListDesc(TestCase):
+
+    def setUp(self) -> None:
+
+        self.osl = OrderedStringList(False)
+        self.osl.add("  yyellow")
+        self.osl.add("yellow")
+        self.osl.add("hello")
+        self.osl.add("world")
+        self.osl.add("foo")
+        self.osl.add("bar")
+        self.osl.add("baa")
+
+    def test_get_values(self):
+
+        self.assertEqual(["  yyellow", "yellow", "world", "hello", "foo", "bar", "baa"], self.osl.get_nodes_values())
+        self.assertEqual(7, self.osl.len())
+        self.assertEqual("  yyellow", self.osl.head.value)
+        self.assertEqual("baa", self.osl.tail.value)
+
+    def test_add_in_head(self):
+
+        self.osl.add("zero")
+        self.assertEqual(8, self.osl.len())
+        self.assertEqual(["zero", "  yyellow", "yellow", "world", "hello", "foo", "bar", "baa"], self.osl.get_nodes_values())
+        self.assertEqual("zero", self.osl.head.value)
+        self.assertEqual("baa", self.osl.tail.value)
+
+    def test_add_in_tail(self):
+
+        self.osl.add("assert")
+        self.assertEqual(8, self.osl.len())
+        self.assertEqual(["  yyellow", "yellow", "world", "hello", "foo", "bar", "baa", "assert"], self.osl.get_nodes_values())
+        self.assertEqual("  yyellow", self.osl.head.value)
+        self.assertEqual("assert", self.osl.tail.value)
+
+    def test_delete_head(self):
+
+        self.osl.delete("  yyellow")
+        self.assertEqual(6, self.osl.len())
+        self.assertEqual(["yellow", "world", "hello", "foo", "bar", "baa"], self.osl.get_nodes_values())
+        self.assertIsNone(self.osl.find("  yyellow"))
+        self.assertEqual("yellow", self.osl.head.value)
+        self.assertEqual("baa", self.osl.tail.value)
+
+    def test_delete_tail(self):
+
+        self.osl.delete("baa")
+        self.assertEqual(6, self.osl.len())
+        self.assertEqual(["  yyellow", "yellow", "world", "hello", "foo", "bar"], self.osl.get_nodes_values())
+        self.assertIsNone(self.osl.find("baa"))
+        self.assertEqual("  yyellow", self.osl.head.value)
+        self.assertEqual("bar", self.osl.tail.value)
+
