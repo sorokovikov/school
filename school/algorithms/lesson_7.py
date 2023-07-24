@@ -83,7 +83,7 @@ class OrderedList:
         if node is None:
             return
 
-        if node is self.head and node is self.tail:
+        if self.len() == 1:
             self.clean(self.__ascending)
             return
 

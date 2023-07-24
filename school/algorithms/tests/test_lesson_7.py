@@ -8,12 +8,15 @@ class TestOrderedList(TestCase):
     def setUp(self) -> None:
 
         self.ol = OrderedList(True)
-        # self.ol.add(999)
-        # self.ol.add(100)
-        # self.ol.add(500)
-        # self.ol.add(345)
-        # self.ol.add(100000)
-        # self.ol.add(1)
+        self.ol.add(999)
+        self.ol.add(100)
+        self.ol.add(500)
+        self.ol.add(345)
+        self.ol.add(100000)
+        self.ol.add(1)
+
+        self.one_element_ol = OrderedList(True)
+        self.one_element_ol.add(100)
 
     def test_len(self) -> None:
 
@@ -23,6 +26,8 @@ class TestOrderedList(TestCase):
         self.ol.add(10)
         self.assertEqual(9, self.ol.len())
 
+        self.assertEqual(1, self.one_element_ol.len())
+
     def test_get_values(self) -> None:
 
         self.assertEqual([1, 100, 345, 500, 999, 100000], self.ol.get_nodes_values())
@@ -31,6 +36,8 @@ class TestOrderedList(TestCase):
 
         self.ol.add(99999)
         self.assertEqual([1, 100, 345, 500, 999, 99999, 100000], self.ol.get_nodes_values())
+
+        self.assertEqual([100], self.one_element_ol.get_nodes_values())
 
     def test_find(self) -> None:
 
@@ -42,6 +49,9 @@ class TestOrderedList(TestCase):
         self.ol.add(100500)
         self.assertIsNotNone(self.ol.find(100500))
         self.assertEqual([1, 100, 345, 500, 999, 100000, 100500], self.ol.get_nodes_values())
+
+        self.assertIsNotNone(self.one_element_ol.find(100))
+        self.assertIsNone(self.one_element_ol.find(2))
 
     def test_delete(self) -> None:
 
@@ -58,6 +68,10 @@ class TestOrderedList(TestCase):
         self.assertEqual(100, self.ol.head.value)
         self.assertEqual(500, self.ol.tail.value)
         self.assertEqual([100, 345, 500], self.ol.get_nodes_values())
+
+        self.one_element_ol.delete(100)
+        self.assertIsNone(self.one_element_ol.head)
+        self.assertIsNone(self.one_element_ol.tail)
 
     def test_add(self) -> None:
 
@@ -111,6 +125,12 @@ class TestOrderedList(TestCase):
         self.assertEqual(-500, self.ol.head.value)
         self.assertEqual(8, self.ol.len())
 
+        self.one_element_ol.add(-10)
+        self.assertIsNotNone(self.one_element_ol.find(-10))
+        self.assertEqual(-10, self.one_element_ol.head.value)
+        self.assertEqual(100, self.one_element_ol.tail.value)
+        self.assertEqual(2, self.one_element_ol.len())
+
     def test_add_in_tail(self) -> None:
 
         self.assertIsNone(self.ol.find(100500))
@@ -128,7 +148,65 @@ class TestOrderedList(TestCase):
         self.assertEqual(999999, self.ol.tail.value)
         self.assertEqual(8, self.ol.len())
 
+        self.one_element_ol.add(999)
+        self.assertIsNotNone(self.one_element_ol.find(999))
+        self.assertEqual(100, self.one_element_ol.head.value)
+        self.assertEqual(999, self.one_element_ol.tail.value)
+        self.assertEqual(2, self.one_element_ol.len())
+
     def test_stress(self):
 
-        for i in range(10000):
+        for i in range(100000):
             self.ol.add(i)
+
+
+class TestOrderedListDesc(TestCase):
+
+    def setUp(self) -> None:
+
+        self.ol = OrderedList(False)
+        self.ol.add(999)
+        self.ol.add(1000)
+        self.ol.add(1)
+        self.ol.add(-5)
+        self.ol.add(300)
+        self.ol.add(555)
+
+    def test_get_values(self):
+
+        self.assertEqual([1000, 999, 555, 300, 1, -5], self.ol.get_nodes_values())
+        self.assertEqual(6, self.ol.len())
+        self.assertEqual(1000, self.ol.head.value)
+        self.assertEqual(-5, self.ol.tail.value)
+
+    def test_add_in_head(self):
+
+        self.ol.add(100500)
+        self.assertEqual([100500, 1000, 999, 555, 300, 1, -5], self.ol.get_nodes_values())
+        self.assertEqual(7, self.ol.len())
+        self.assertEqual(100500, self.ol.head.value)
+        self.assertEqual(-5, self.ol.tail.value)
+
+    def test_add_in_tail(self):
+
+        self.ol.add(-100)
+        self.assertEqual([1000, 999, 555, 300, 1, -5, -100], self.ol.get_nodes_values())
+        self.assertEqual(7, self.ol.len())
+        self.assertEqual(1000, self.ol.head.value)
+        self.assertEqual(-100, self.ol.tail.value)
+
+    def test_delete_head(self):
+
+        self.ol.delete(1000)
+        self.assertEqual([999, 555, 300, 1, -5], self.ol.get_nodes_values())
+        self.assertEqual(5, self.ol.len())
+        self.assertEqual(999, self.ol.head.value)
+        self.assertEqual(-5, self.ol.tail.value)
+
+    def test_delete_tail(self):
+
+        self.ol.delete(-5)
+        self.assertEqual([1000, 999, 555, 300, 1], self.ol.get_nodes_values())
+        self.assertEqual(5, self.ol.len())
+        self.assertEqual(1000, self.ol.head.value)
+        self.assertEqual(1, self.ol.tail.value)
