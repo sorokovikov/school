@@ -28,3 +28,7 @@ class TestHashTable(TestCase):
         self.assertEqual(13, self.h.put("world2"))
         self.assertEqual(13, self.h.put("world2"))
         self.assertEqual(12, self.h.put("world2"))
+
+    def test_find(self) -> None:
+
+

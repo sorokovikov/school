@@ -25,18 +25,17 @@ class HashTable:
         if self.slots[original_hash] == value:
             return original_hash
 
-        slot = None
-        hash = original_hash
+        hash = original_hash + self.step
         while hash < self.size:
-            hash += self.step
             if self.slots[hash] is None:
                 return hash
+            hash += self.step
 
         hash = 0
         while hash < original_hash:
-            hash += self.step
             if self.slots[hash] is None:
                 return hash
+            hash += self.step
         return None
 
     def put(self, value: str) -> Optional[int]:
@@ -55,7 +54,25 @@ class HashTable:
         # except ValueError:
         #     return None
 
-        hash = self.hash_fun(value)
-        if self.slots[hash] is None:
+        original_hash = self.hash_fun(value)
+        if self.slots[original_hash] is None:
             return None
-        return hash
+        if self.slots[original_hash] == value:
+            return original_hash
+
+        hash = original_hash + self.step
+        while hash < self.size:
+            if self.slots[hash] is None:
+                return None
+            if self.slots[hash] == value:
+                return hash
+            hash += self.step
+
+        hash = 0
+        while hash < original_hash:
+            if self.slots[hash] is None:
+                return None
+            if self.slots[hash] == value:
+                return hash
+            hash += self.step
+        return None
