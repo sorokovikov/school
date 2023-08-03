@@ -49,11 +49,6 @@ class HashTable:
 
     def find(self, value: str) -> Optional[int]:
 
-        # try:
-        #     return self.slots.index(value)
-        # except ValueError:
-        #     return None
-
         original_hash = self.hash_fun(value)
         if self.slots[original_hash] is None:
             return None
