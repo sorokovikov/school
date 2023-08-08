@@ -68,30 +68,3 @@ class HashTable:
                 return dif_hash
             dif_hash += self.step
         return None
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        # hash = original_hash + self.step
-        # while hash < self.size:
-        #     if self.slots[hash] is None:
-        #         return None
-        #     if self.slots[hash] == value:
-        #         return hash
-        #     hash += self.step
-        #
-        # hash = 0
-        # while hash < original_hash:
-        #     if self.slots[hash] is None:
-        #         return None
-        #     if self.slots[hash] == value:
-        #         return hash
-        #     hash += self.step
-        # return None
