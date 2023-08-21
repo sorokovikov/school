@@ -1,6 +1,6 @@
 class BloomFilter:
 
-    def __init__(self, f_len):
+    def __init__(self, f_len: int):
         self.filter_len = f_len
         self.bitarray = [0] * self.filter_len
 
