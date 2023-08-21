@@ -32,4 +32,5 @@ class BloomFilter:
 
     def delete(self, index: int) -> None:
 
-        self.bitarray[index] = 0
+        self.filter ^= 0b1 << index
+
