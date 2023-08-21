@@ -3,6 +3,7 @@ class BloomFilter:
     def __init__(self, f_len: int):
         self.filter_len = f_len
         self.bitarray = [0] * self.filter_len
+        self.filter = 0b0
 
     def hash1(self, str1: str) -> int:
         # 17
@@ -20,16 +21,14 @@ class BloomFilter:
 
     def add(self, str1: str) -> None:
 
-        self.bitarray[self.hash1(str1)] = 1
-        self.bitarray[self.hash2(str1)] = 1
+        self.filter |= 0b1 << self.hash1(str1) | 0b1 << self.hash2(str1)
 
     def is_value(self, str1: str) -> bool:
 
-        if self.bitarray[self.hash1(str1)] == 1:
-            return True
-        if self.bitarray[self.hash2(str1)] == 1:
-            return True
-        return False
+        mask1 = 0b1 << self.hash1(str1)
+        mask2 = 0b1 << self.hash2(str1)
+
+        return self.filter | mask1 | mask2 == self.filter
 
     def delete(self, index: int) -> None:
 
