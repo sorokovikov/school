@@ -2,7 +2,6 @@ class BloomFilter:
 
     def __init__(self, f_len: int):
         self.filter_len = f_len
-        self.bitarray = [0] * self.filter_len
         self.filter = 0b0
 
     def hash1(self, str1: str) -> int:
