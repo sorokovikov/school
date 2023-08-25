@@ -60,17 +60,20 @@ class TestLesson12(TestCase):
         self.cache.get("Index 3")
         self.cache.get("Index 3")
 
+        self.assertTrue(self.cache.is_key("Index 1"))
         self.cache.put("Index 4", 4)
-        self.cache.get("Index 4")
-        self.cache.get("Index 4")
-        self.cache.get("Index 4")
-        self.cache.get("Index 4")
-
         self.assertFalse(self.cache.is_key("Index 1"))
 
+        self.cache.get("Index 4")
+        self.cache.get("Index 4")
+        self.cache.get("Index 4")
+        self.cache.get("Index 4")
+
+        self.assertTrue(self.cache.is_key("Index 2"))
         self.cache.put("Index 5", 5)
         self.assertFalse(self.cache.is_key("Index 2"))
 
+        self.assertTrue(self.cache.is_key("Index 5"))
         self.cache.put("Index 6", 6)
         self.assertFalse(self.cache.is_key("Index 5"))
 
