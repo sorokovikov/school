@@ -1,0 +1,31 @@
+Язык - python
+
+member - trunk_member
+// Участник магистрального порта
+
+res - oids_to_ports_states
+// Словарь OID к статусу порта коммутатора
+
+res - access_port_oids_to_vlan_ids
+// Словарь OID access-порта к VLAN ID
+
+ret - deliveries_data
+// Результать запроса к ручке 'delivery'
+
+snmpwalk_result - ports_statuses
+// Результат SNMP-запроса для получения статусов портов
+
+data - power_reset_body
+// Тело запроса для перезагрузки сервера
+
+lower_name - sensor_name_in_lower_case
+// Имя датчика в нижнем регистре
+
+result_type - sensor_type
+// Тип датчика
+
+active_image - active_iso_image
+// Активный ISO-образ
+
+file_path - bios_firmware_file_path
+// Путь к прошике BIOS

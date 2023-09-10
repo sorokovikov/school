@@ -1,0 +1,6 @@
+*.html
+
+
+# IDEA
+*__pycache__*
+*.idea*
