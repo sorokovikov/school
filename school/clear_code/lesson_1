@@ -29,3 +29,9 @@ active_image - active_iso_image
 
 file_path - bios_firmware_file_path
 // Путь к прошике BIOS
+
+row - db_row
+// Строчка из БД
+
+error - creation_error
+// Ошибка создания
