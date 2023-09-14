@@ -1,0 +1,63 @@
+Язык - python
+
+// ------------------------ 6.1 ----------------------------
+
+result - json_response
+// Ответ endpoint'а в JSON
+
+cache - db_cache
+// Кэш БД
+
+datapoints_values - rx_statstic
+// Статистика полученного трафика
+
+calculated_statistic - tx_volume
+// Объем исходящего трафика
+
+calculated_statistic - sum_energy_consumption
+// Сумма энергопотребления
+
+
+// ------------------------ 6.2 ----------------------------
+
+tasks - task_queue
+// Очередь задач
+
+license - lisense_singleton
+// Синглтон класса лицензии
+
+statistic_path - statistic_url
+// URL получения статистики
+
+report - report_creator
+// Создатель отчета
+
+
+// ------------------------ 6.3 ----------------------------
+
+repo - os_template_repository
+// Репозиторий шаблонов ОС
+
+query - server_count_query
+// Запрос количества серверов
+
+interface - network_interface
+// Сетевые интерфейсы
+
+
+// ------------------------ 6.4 ----------------------------
+
+repo - repository
+// Репозиторий
+
+rx - rx_traffic
+// Входящий трафик
+
+id - report_id
+// ID отчета
+
+params - request_params
+// Параметры запроса
+
+text - response_text
+// Текст ответа
