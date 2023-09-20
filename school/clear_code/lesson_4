@@ -1,0 +1,37 @@
+Язык - python
+
+now - handler_start_time
+// Время начала работы обработчика
+
+result - aggregated_rack_temperature_info
+// Обобщенная информация о температуре в стойке
+
+alert - alert_setting
+// Настройка уведомления
+
+response - repositories_json
+// Ответ обработчика "repository"
+
+DEFAULT_PERIOD - SECS_BETWEEN_CHECKS
+// Значение по-умолчанию количества секунд между проверками
+
+where - where_condition
+// Обобщенное условие "where" для запроса
+
+stream_messages - redis_stream_messages
+// Сообщения из стрима redis
+
+args - stdin_args
+// Входные аргументы
+
+redis_max_length - max_redis_message_length
+// Максимальный размер сообщения для redis
+
+stream - redis_stream
+// Имя стрима redis
+
+attempt - polling_attempt
+// Попытка опроса
+
+params - request_body
+// Тело запроса
