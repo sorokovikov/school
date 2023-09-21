@@ -1,0 +1,37 @@
+Язык - python
+
+SensorInfo - Sensor
+// Класс, содержащий инфу о датчике
+
+SensorInfoLimits - SensorLimits
+// Класс, содержащий инфу о границах датчика
+
+Ssh - SshTunnel
+// Класс для работы по ssh
+
+SetRedisKeys - RedisKey
+// Класс для управления ключами в redis
+
+ProcessIntelAmt - IntelAmt
+// Класс для работы с IntelAmt
+
+GetSensorsValuesHandler - SensorsValuesGetHandler
+// Класс обработчика получения значений датчиков
+
+GetLogsHandler - BmcLogsGetHandler
+// Класс для получения логов BMC
+
+GetFruHandler - FruGetHandler
+// Класс для получения FRU BMC
+
+GetBmcModel - BMCModelGetHandler
+// Класс для получения BMC model
+
+PduInfo - Pdu
+// Класс, содержащий инфу о PDU
+
+IntelAmtData - IntelAmtConnectionProperties
+// Класс, содержащий инфу для подключения к IntelAmt
+
+LdapUserInfo - LdapUser
+// Пользователь LDAP
