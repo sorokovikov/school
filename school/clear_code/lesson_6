@@ -1,0 +1,37 @@
+Язык - python
+
+cancel - stop
+// Метод класса Timer, выполняющий его остановку
+
+wait_cancel - wait_stop
+// Метод класса Timer, выполняющий его остановку с ожиданием
+
+error_to_pretty_form - load_error
+// Привести ошибку к JSON
+
+auth_client - make_auth_client
+// Создает объект клиента к сервису Auth
+
+call_ctl - execute
+// Метод класса CtlOverSsh, выполняющий исполняемый файл
+
+macro_prepare - prepare_macro
+// Подготавливает макрос
+
+operation_is_running - is_operation_running
+// Проверяет запущена ли операция на сервере
+
+timepoint_to_str - lead_timestamp_to_str
+// Приводит временную метку к строке
+
+timpoint_from_str - get_timpoint_from_str
+// Получает временную метку из строки
+
+device_info_parse - parse_device_model
+// Получает модель из информации устройства
+
+status - get_status
+// Метод класса Ipmi, получающий статус BMC
+
+power_on - switch_power_on
+// Метод класса Ipmi, включающий сервер
