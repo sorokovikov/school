@@ -1,0 +1,22 @@
+Язык - python
+
+from_dict(d: dict)
+// Фабричный метод для создания экземпляра класса из словаря
+
+create_report() -> Report
+// Фабричный метод для создания экземпляров класса Report
+
+get_server_data_row(server_id: int) -> ServerDataRow
+// Фабричный метод для создания экземпляров класса ServerDataRow
+
+Report
+// Абстрактный класс отчета
+
+ServerReport
+// Абстрактный класс отчета сервера
+
+ReportCreator
+// Абстрактный класс для создания экземпляра класса Report
+
+ServerReportCreator
+// Абстрактный класс для создания экземпляров класса ServerReport
