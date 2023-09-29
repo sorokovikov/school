@@ -1,0 +1,35 @@
+ETAG - ETAG_HEADER
+// Константа для хранения хедера Etag, стало понятно, что это хедер
+
+ACTIONS - ACTIONS_KEY
+// Константа для хранения ключа Actions, стало понятно, что это ключ словаря
+
+UNKNOWN - IPMI_USER_LEVEL_UNKNOWN
+// Константа, обозначающая, что права пользователя IPMI неизвестны
+
+NO_ACCESS - IPMI_USER_LEVEL_NO_ACCESS
+// Константа, обозначающая, что пользователь IPMI не имеет доступа
+
+ADMINISTRATOR - IPMI_USER_LEVEL_ADMINISTRATOR
+// Константа, обозначающая, что пользователь IPMI имеет права администратора
+
+BIN - IPMITOOL_BIN
+// Константа бинаря ipmitool
+
+HP - MANUFACTURER_HP
+// Хранит имя производителя серверов HP
+
+DELL - MANUFACTURER_DELL
+// Хранит имя производителя серверов Dell
+
+UP_ERROR - PDU_PORT_UP_ERROR
+// Константа, обозначающая ошибку включения порта PDU
+
+DOWN_ERROR - PDU_PORT_DOWN_ERROR
+// Константа, обозначающая ошибку выключения порта PDU
+
+REDIS_BMC_STREAMS - ENV_REDIS_BMC_STREAMS
+// Константа имени переменной окружения стримов BMC Redis
+
+GROUP_NAME - ENV_REDIS_GROUP_NAME
+// Константа имени переменной окружения группы Redis
