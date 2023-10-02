@@ -1,0 +1,10 @@
+"if exc is None and self._changed_config" - need_save
+// Вынес результат в булевую переменную
+
+"if oid in (OID_DOT_MAU_TYPE_10_BASE_THD, OID_DOT_MAU_TYPE_10_BASE_TFD)" - is_10_mbps
+// Вынес результат в булевую переменную
+
+"float size = getSize();" - double size
+// Увеличил точность
+
+// Честно просмотрел код и не нашел больше огрехов
