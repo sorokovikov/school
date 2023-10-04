@@ -1,0 +1,85 @@
+periodic_funcs = [locations_info.update, call_processors] - periodic_funcs: list[Coroutine] = [locations_info.update, call_processors]
+// Добавил типизацию
+
+// Было:
+client = make_auth_client()
+// Стало:
+auth_client: Client = make_auth_client()
+// ... много кода...
+auth_client = None
+// ... много кода...
+// Изменил имя переменной, добавил тип, удалил ссылку на объект
+
+// Было:
+resp = make_eservice_client(instance_id).get(f"custom_equipment/{handler}")
+// Стало:
+response: Response = make_eservice_client().get("...")
+// ... много кода...
+response = None
+// ... много кода...
+// Изменил имя переменной, добавил тип, удалил ссылку на объект
+
+args = get_cmd_args() - args: list[str] = get_cmd_args()
+// Добавил тип
+
+// Было
+result = ctl_executor.call_ctl(
+    args=known_args,
+    location_data=location_data,
+)
+// Стало
+result: dict[str, Any] = ctl_executor.call_ctl(
+    args=known_args,
+    location_data=location_data,
+)
+// Добавил тип
+
+metric_path: str = f"... длинная строка..." 
+// Добавил тип
+
+ram_name = component.findtext("../name") or "" - ram_name: str = component.findtext("../name") or ""
+// Добавил тип
+
+is_raid_included = server_info.findtext("raid") or "off" - raid_status: str = server_info.findtext("raid") or "off"
+// Изменил имя переменной, добавил тип
+
+// Было:
+lan_info_list = []
+if lan_info_str:
+    // ... много кода...
+return lan_info_list
+// Стало:
+if lan_info_str:
+    lan_info_list: list[LANInfo] = []
+    // ... много кода...
+    return lan_info_list
+return []
+// Добавил тип, перенес объявление переменной
+
+ret = [] - entities: list[BaseEntity] = []
+// Изменил имя переменной, добавил тип
+
+msg = "... длинная строка..." - message: str = "... длинная строка..."
+// Изменил имя переменной, добавил тип
+
+name = item.get("name") - name: str = item.get("name")
+// Добавил тип
+
+required_types = get_required_types() - required_types: list[MigrateType] = get_required_types()
+// Добавил тип
+
+// Было
+imported_servers = []
+imported = 0
+for server in servers:
+    // ... много кода...
+logging.info("Imported servers: %d", imported)
+// Стало
+imported_servers: list[Server] = []
+for server in servers:
+    // ... много кода...
+logging.info("Imported servers: %d", len(imported))
+// Удалил счетчик, добавил тип
+
+rack_id = await self.__rack_by_name(server.rack_name) - rack_id: int = await self.__rack_by_name(server.rack_name)
+// Добавил тип
