@@ -1,0 +1,78 @@
+// Было
+@dataclass
+class GraphiteView:
+    """Graphite connection data."""
+
+    host: str
+    port: str
+
+// Стало
+@dataclass
+class GraphiteView:
+    """Graphite connection data."""
+
+    __host: str
+    __port: str
+
+    @property
+    def host(self):
+        return self.__host
+    
+    @property
+    def port(self):
+        return self.__port
+// Сделал поля приватными и сделал методы для получения их значений
+
+// Было
+API_V4 = "v4"
+// Стало
+class LicenseService:
+    __API_V4 = "v4"
+// Была константа внутри модуля, она стала приватным членом класса
+
+// Было
+__rams: list[Ram]
+// Стало
+... много кода
+    rams = ...
+... много кода
+    rams = None
+// Был приватный член класса, он использовался в одной методе. Стал локальной переменной метода
+
+// Было
+component = components.find(".//elem//category[.='cpu']")
+// Стало - вынес в отедльн
+
+// Было
+smart = ""
+model = ""
+
+serial = component.findtext("../serial")
+if serial:
+    for smart_info in smart_info_list:
+        if serial in smart_info:
+            smart = smart_info
+            smart_info_list.remove(smart_info)
+            break
+    for hdd_info in hdd_info_list:
+        if serial in hdd_info:
+            model = преобразование(hdd_info)
+            hdd_info_list.remove(hdd_info)
+            break
+// Стало
+def get_smart(smart_info_list, serial):
+    if not serial:
+        return ""
+    for smart_info in smart_info_list:
+        if serial in smart_info:
+            return smart_info
+    return ""
+
+def get_model(hdd_info_list, serial):
+    if not serial:
+        return ""
+    for smart_info in hdd_info_list:
+        if serial in smart_info:
+            return smart_info
+    return ""
+// Вынес получение smart и model в отдельные функции (их получение происходит раньше) -> smart_info_list и hdd_info_list больше не используются в большой функции
