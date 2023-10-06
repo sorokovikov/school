@@ -76,3 +76,32 @@ def get_model(hdd_info_list, serial):
             return smart_info
     return ""
 // Вынес получение smart и model в отдельные функции (их получение происходит раньше) -> smart_info_list и hdd_info_list больше не используются в большой функции
+
+// Было
+OID_DOT_MAU_TYPE_10_BASE_THD = "длинный OID"
+OID_DOT_MAU_TYPE_10_BASE_TFD = "длинный OID"
+OID_DOT_MAU_TYPE_100_BASE_TXHD = "длинный OID"
+OID_DOT_MAU_TYPE_100_BASE_TXFD = "длинный OID"
+OID_DOT_MAU_TYPE_1000_BASE_THD = "длинный OID"
+OID_DOT_MAU_TYPE_1000_BASE_TFD = "длинный OID"
+// Стало
+class CiscoCatalyst:
+    _OID_DOT_MAU_TYPE_10_BASE_THD = "длинный OID"
+    _OID_DOT_MAU_TYPE_10_BASE_TFD = "длинный OID"
+    _OID_DOT_MAU_TYPE_100_BASE_TXHD = "длинный OID"
+    _OID_DOT_MAU_TYPE_100_BASE_TXFD = "длинный OID"
+    _OID_DOT_MAU_TYPE_1000_BASE_THD = "длинный OID"
+    _OID_DOT_MAU_TYPE_1000_BASE_TFD = "длинный OID"
+// Унес константы модуля в класс, сделав их приватными (они используются в наследниках)
+
+// Было
+class ConsumerDaemon:
+    def __init__(self):
+        self.is_running = True
+        ...
+// Стало
+class ConsumerDaemon:
+    def __init__(self):
+        self.__is_running = True
+        ...
+// Поле класса стало приватным, а было публичным - для такого поля это BAD!
