@@ -1,0 +1,24 @@
+repositories = ["url_1", "url_2", "url_3"]
+// Список URL репозиториев. Можно было бы использовать множество
+
+command = ["chassis", "bootdev", bootorder.bootdev]
+// Список аргументов запуска команды. Можно было бы использовать очередь/связный список
+
+MEMORY_SENSOR_NAMES = ["mem", "dimm", "ddr"]
+// Спиоск названий датчиков памяти. Можно было бы использовать множество
+
+command = [
+    "docker",
+    "exec",
+    "-i",
+    CONTAINER_NAME,
+    "python3",
+    file,
+    args,
+]
+// Список строк - аргументы командной строки для запуска команды docker. Можно было бы использовать очередь
+
+location_ids: list[int] = []
+for location_info in get_location_info():
+    location_ids.append(location_info.id)
+// Список ID локаций. После используется в цикле "for". Можно было бы использовать связный список
