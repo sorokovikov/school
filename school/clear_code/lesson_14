@@ -1,0 +1,47 @@
+// Комментарии допустимы:
+# Разделяем по 8 символов
+bins_list = [bin_data[i : i + 8] for i in range(0, len(bin_data), 8)]
+
+# Transform binary number to HEX and remove '0x' prefix
+hex_number = str(hex(int(bin_number, 2)))[2:]
+
+# лочка помогает кэшировать запросы к списку пользователей при распараллеливании
+async with AsyncLocker.lock("user"):
+    return await _impl(account_id)
+
+# Если фильтра нет, не нужно получать все дедики
+if not prices_filter:
+    return []
+
+rack: str = ""  # в 5 версии стойки может не быть
+
+# Если шасси больше 1 юнита, то нужно пересчитать стартовый юнит, так как в dci5 позиция
+# считается вниз от юнита, а в dci6 считается вверх, дополнительное условие на размер не нужно,
+# так как если размер равен одному то позиция останется неизменной
+transform_unit = lead_dci6_multiunit_device(rack_info.unit, platform_info.size)
+
+# Отделяем модель и серийный номер (они идут первыми) от размера и скорости чтения диска
+# разделителем '\t\t'.
+# Затем разделяем модель и серийный номер разделителем '_'.
+# Пример: 'INTEL SSDSC2KG480G8_BTYG951401KH480BGN\t\t480 GB\t\t523MB/s'
+model = hdd_info.split("\t\t")[0].split("_", maxsplit=1)[0]
+
+
+// Комментарии излишни:
+# For logging
+LOG_FILE_PATH = "/var/log/dci_***.log"
+LOGGER_NAME = "***"
+
+# The result should contain these nodes
+hc.assert_that(output, hc.has_items("hostname", "ports", "vlans"), "Check required parameters failed")
+
+# Nodes must be of these types
+hc.assert_that(output["hostname"], hc.instance_of(str), "Check 'hostname' type failed")
+
+# auto save config
+if exc is None and self._changed_config:
+    self._save_config_to_nvram()
+
+NO_AUTH = 1  # без аутентификации
+
+server: str  # server name
