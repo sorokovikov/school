@@ -1,0 +1,54 @@
+migration_action: Action
+// Комментарий содержал "Migration action" - переименовал переменную, говорющую саму за себя
+
+name: str  # имя пользователя из DCI
+// Удалил комментарий
+
+password: Optional[str]  # пароль пользователя из DCI
+// Удалил комментарий
+
+platform: PlatformEnum
+// Комментарий содержал "Platform for migration" - удалил его, переменная самодостаточна
+
+async def __change_owner(self, dedic_or_colo: DedicInfo | ColocationInfo) -> None:
+    """Change server owner."""
+// Удалил док-стринг, переименовал функцию в "change_server_owner"
+
+# ищем наиболее правильную модель HDD по его серийному номеру
+for hdd_info in hdd_info_list:
+// Передвинул комментарий к циклу - локализовал его
+
+# Возвращаем только известные аргументы, остальные игнорируем
+    return parser.parse_known_args(args=raw_args)[0]
+// Удалил комментарий, он излишен
+
+# Patch asyncio loop using uvloop
+    asyncio.set_event_loop_policy(EventLoopPolicy())
+// Удалил комментарий, он излишен
+
+# Redis default values
+REDIS_HOST = ...
+REDIS_PORT = ...
+// Удалил комментарий, добавил в константы префикс `DEFAULT`
+
+# Выход по лимиту
+    if limit and limit <= selected_count:
+        break
+// Удалил комментарий, он излишен
+
+# await self.__from_redis.xdel(stream_name=stream_name, message_id=message_id)
+// Удалил закомментированный код
+
+# logging.debug(f"Got message from stream {stream_name}")
+// Удалил закомментированный код
+
+DEFAULT_TIMER_TTL = 60  # Дефолтный рефреш таймера в секундах
+// Удалил комментарий, он излишен
+
+DEFAULT_WAIT_FOR = 0  # Дефолтная задержка перед выполнением команды
+// Удалил комментарий, он излишен
+
+# When got fatal error
+if "stderr" in error:
+    return error["stderr"]
+// Удалил комментарий, он излишен
