@@ -12,3 +12,9 @@ class TestPow(TestCase):
         self.assertEqual(100000000, pow(-10, 8))
         self.assertEqual(-343, pow(-7, 3))
         self.assertEqual(1.728, pow(1.2, 3))
+
+        self.assertEqual(0.25, pow(2, -2))
+        self.assertEqual(0.0016, round(pow(5, -4), 4))
+        self.assertEqual(0.015625, pow(8, -2))
+
+        self.assertEqual(1, pow(100500, 0))
