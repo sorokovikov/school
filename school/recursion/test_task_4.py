@@ -12,6 +12,7 @@ class TestIsPalindrome(TestCase):
         self.assertTrue(is_palindrome("ПриветтевирП"))
         self.assertTrue(is_palindrome("ПриветевирП"))
         self.assertTrue(is_palindrome("aa"))
+        self.assertTrue(is_palindrome(""))
 
         self.assertFalse(is_palindrome("fooooob"))
         self.assertFalse(is_palindrome("HelloalleH"))

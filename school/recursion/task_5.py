@@ -1,10 +1,13 @@
 def print_even_numbers(numbers: list) -> None:
 
-    if len(numbers) == 0:
+    _print_even_numbers(numbers, 0)
+
+
+def _print_even_numbers(numbers: list, index: int) -> None:
+
+    if len(numbers) == index:
         return
 
-    number = numbers.pop(0)
-
-    if number % 2 == 0:
-        print(number)
-    print_even_numbers(numbers)
+    if numbers[index] % 2 == 0:
+        print(numbers[index])
+    _print_even_numbers(numbers, index + 1)

@@ -1,12 +1,13 @@
 def print_even_index_elements(list_: list) -> None:
 
-    if len(list_) == 0:
+    _print_even_index_elements(list_, 0)
+
+
+def _print_even_index_elements(list_: list, index: int) -> None:
+
+    if len(list_) == index:
         return
 
-    print(list_.pop(0))
-
-    if len(list_) == 0:
-        return
-
-    list_.pop(0)
-    print_even_index_elements(list_)
+    if index % 2 == 0:
+        print(list_[index])
+    _print_even_index_elements(list_, index + 1)
