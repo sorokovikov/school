@@ -5,15 +5,19 @@ from typing import Any, Optional
 
 class SimpleTreeNode:
 
+    level: Optional[int]
+
     def __init__(self, val: Any, parent: Optional[SimpleTreeNode]):
         self.NodeValue = val  # значение в узле
         self.Parent = parent  # родитель или None для корня
         self.Children: list[SimpleTreeNode] = []  # список дочерних узлов
+        self.level = parent.level + 1 if (parent and parent.level) else None
 
     def add_child(self, child: SimpleTreeNode) -> None:
 
         self.Children.append(child)
         child.Parent = self
+        child.level = self.level + 1
 
 
 class SimpleTree:
@@ -106,3 +110,17 @@ class SimpleTree:
 
         for child in root.Children:
             self._leaf_count(child, leaf_nodes)
+
+    def set_levels(self):
+
+        if self.Root is None:
+            return
+
+        self._set_level(self.Root, 0)
+
+    def _set_level(self, root: SimpleTreeNode, level: int) -> None:
+
+        root.level = level
+
+        for child in root.Children:
+            self._set_level(child, level + 1)
