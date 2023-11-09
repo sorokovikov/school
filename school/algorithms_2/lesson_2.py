@@ -109,75 +109,59 @@ class BST:
 
         if is_max and root.RightChild is not None:
             return self._find_min_max(root.RightChild, is_max)
-        # if is_max and root.LeftChild is not None:
-        #     return self._find_min_max(root.LeftChild, is_max)
 
         if not is_max and root.LeftChild is not None:
             return self._find_min_max(root.LeftChild, is_max)
-        # if not is_max and root.RightChild is not None:
-        #     return self._find_min_max(root.RightChild, is_max)
 
         return root
 
     def DeleteNodeByKey(self, key: int) -> bool:
+
+        if self.Root is None:
+            return False
 
         find = self.FindNodeByKey(key)
 
         if not find.NodeHasKey:
             return False
 
-        if find.Node.is_leaf() and find.Node is self.Root:
+        if find.Node is self.Root and self.Root.is_leaf():
             self.Root = None
             return True
 
-        if find.Node.is_leaf() and find.Node.Parent.LeftChild is find.Node:
-            find.Node.Parent.LeftChild = None
+        if find.Node.is_leaf():
+            if find.Node.Parent.LeftChild is find.Node:
+                find.Node.Parent.LeftChild = None
+            if find.Node.Parent.RightChild is find.Node:
+                find.Node.Parent.RightChild = None
             return True
 
-        if find.Node.is_leaf() and find.Node.Parent.RightChild is find.Node:
-            find.Node.Parent.RightChild = None
-            return True
+        if find.Node.LeftChild is None or find.Node.RightChild is None:
+            if find.Node.LeftChild is not None:
+                find.Node.LeftChild.Parent = find.Node.Parent
+                if find.Node is find.Node.Parent.LeftChild:
+                    find.Node.Parent.LeftChild = find.Node.LeftChild
+                if find.Node is find.Node.Parent.RightChild:
+                    find.Node.Parent.RightChild = find.Node.LeftChild
+            if find.Node.RightChild is not None:
+                find.Node.RightChild.Parent = find.Node.Parent
+                if find.Node is find.Node.Parent.LeftChild:
+                    find.Node.Parent.LeftChild = find.Node.RightChild
+                if find.Node is find.Node.Parent.RightChild:
+                    find.Node.Parent.RightChild = find.Node.RightChild
 
-        # if find.Node.LeftChild and find.Node.Parent.LeftChild is find.Node:
-        #     find.Node.Parent.LeftChild = find.Node.LeftChild
-        #     find.Node.LeftChild.Parent = find.Node.Parent
-        #     return True
-        #
-        # if find.Node.LeftChild and find.Node.Parent.RightChild is find.Node:
-        #     find.Node.Parent.RightChild = find.Node.LeftChild
-        #     find.Node.LeftChild.Parent = find.Node.Parent
-        #     return True
-        #
-        # if find.Node.RightChild and find.Node.Parent.LeftChild is find.Node:
-        #     find.Node.Parent.LeftChild = find.Node.RightChild
-        #     find.Node.RightChild.Parent = find.Node.Parent
-        #     return True
-        #
-        # if find.Node.RightChild and find.Node.Parent.RightChild is find.Node:
-        #     find.Node.Parent.RightChild = find.Node.RightChild
-        #     find.Node.RightChild.Parent = find.Node.Parent
-        #     return True
+        if find.Node.LeftChild and find.Node.RightChild:
+            most_left_node = self.FinMinMax(find.Node.RightChild, FindMax=False)
+            find.Node.NodeKey = most_left_node.NodeKey
+            find.Node.NodeValue = most_left_node.NodeValue
 
-        if find.Node.RightChild:
-            most_left_node = self.FinMinMax(find.Node.RightChild, False)
-
-            if most_left_node.is_leaf():
-                most_left_node.Parent.LeftChild = None
-            else:
+            if most_left_node is most_left_node.Parent.LeftChild:
                 most_left_node.Parent.LeftChild = most_left_node.RightChild
+            if most_left_node is most_left_node.Parent.RightChild:
+                most_left_node.Parent.RightChild = most_left_node.RightChild
+
+            if most_left_node.RightChild is not None:
                 most_left_node.RightChild.Parent = most_left_node.Parent
-
-            if find.Node is self.Root:
-                self.Root = most_left_node
-                most_left_node.Parent = None
-
-            if find.Node.Parent and find.Node.Parent.LeftChild is find.Node:
-                most_left_node.Parent = find.Node.Parent
-                find.Node.Parent.LeftChild = most_left_node
-
-            if find.Node.Parent and find.Node.Parent.RightChild is find.Node:
-                most_left_node.Parent = find.Node.Parent
-                find.Node.Parent.RightChild = most_left_node
 
         return True
 

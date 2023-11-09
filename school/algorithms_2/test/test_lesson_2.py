@@ -82,13 +82,18 @@ class TestLesson2(TestCase):
         self.t.AddKeyValue(7, 7)
         self.t.AddKeyValue(1, 1)
 
+        self.assertEqual(7, self.t.Count())
+
         self.t.DeleteNodeByKey(6)
-        for node in self.t.get_all_nodes():
-            print(node.NodeKey)
+
+        self.assertEqual(6, self.t.Count())
+
         find = self.t.FindNodeByKey(6)
         self.assertFalse(find.NodeHasKey)
 
         self.t.DeleteNodeByKey(10)
+
+        self.assertEqual(5, self.t.Count())
 
 
 
