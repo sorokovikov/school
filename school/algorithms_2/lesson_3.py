@@ -187,3 +187,60 @@ class BST:
 
         if root.RightChild:
             self._get_all_nodes(root.RightChild, all_nodes)
+
+    def WideAllNodes(self) -> tuple[BSTNode, ...]:
+
+        if self.Root is None:
+            return tuple()
+
+        all_nodes: list[BSTNode] = []
+        nodes_to_visit = [self.Root]
+
+        for node in nodes_to_visit:
+            all_nodes += (node, )
+
+            if node.LeftChild:
+                nodes_to_visit.append(node.LeftChild)
+            if node.RightChild:
+                nodes_to_visit.append(node.RightChild)
+
+        return tuple(all_nodes)
+
+    def DeepAllNodes(self, order: int) -> tuple[BSTNode, ...]:
+
+        all_nodes: list[BSTNode] = []
+
+        if order == 0:
+            self._in_order(self.Root, all_nodes)
+        if order == 1:
+            self._post_order(self.Root, all_nodes)
+        if order == 2:
+            self._pre_order(self.Root, all_nodes)
+        return tuple(all_nodes)
+
+    def _in_order(self, root: BSTNode, all_nodes: list[BSTNode]) -> None:
+
+        if root is None:
+            return
+
+        self._in_order(root.LeftChild, all_nodes)
+        all_nodes.append(root)
+        self._in_order(root.RightChild, all_nodes)
+
+    def _post_order(self, root: BSTNode, all_nodes: list[BSTNode]) -> None:
+
+        if root is None:
+            return
+
+        self._post_order(root.LeftChild, all_nodes)
+        self._post_order(root.RightChild, all_nodes)
+        all_nodes.append(root)
+
+    def _pre_order(self, root: BSTNode, all_nodes: list[BSTNode]) -> None:
+
+        if root is None:
+            return
+
+        all_nodes.append(root)
+        self._pre_order(root.LeftChild, all_nodes)
+        self._pre_order(root.RightChild, all_nodes)
