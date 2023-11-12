@@ -7,11 +7,15 @@ class TestLesson4(TestCase):
 
     def setUp(self):
 
-        self.t = aBST(3)
+        self.t = aBST(2)
 
         self.t.AddKey(50)
         self.t.AddKey(35)
         self.t.AddKey(75)
+
+    def test_len(self):
+
+        self.assertEqual(7, len(self.t.Tree))
 
     def test_add_key(self):
 

@@ -4,7 +4,7 @@ from typing import Optional
 class aBST:
 
     def __init__(self, depth: int):
-        tree_size = 2 ** depth - 1
+        tree_size = 2 ** (depth + 1) - 1
         self.Tree: list[Optional[int]] = [None] * tree_size
 
     def FindKeyIndex(self, key: int) -> Optional[int]:
