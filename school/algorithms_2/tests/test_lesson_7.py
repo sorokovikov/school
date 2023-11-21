@@ -8,13 +8,14 @@ class TestLesson7(TestCase):
     def setUp(self):
 
         self.heap = Heap()
-        self.heap.MakeHeap([11, 9, 4, 7, 8, 3, 1, 2, 5, 6], 3)
+        self.heap.MakeHeap([6, 5, 2, 1, 3, 8, 7, 4, 9, 11], 3)
 
     def test_make_heap(self):
 
         self.assertEqual(15, len(self.heap.HeapArray))
         self.assertIsNotNone(self.heap.HeapArray[9])
         self.assertIsNone(self.heap.HeapArray[10])
+        self.assertEqual(11, self.heap.HeapArray[0])
 
     def test_get_max(self):
 

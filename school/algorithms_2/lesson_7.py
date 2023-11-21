@@ -9,7 +9,14 @@ class Heap:
     def MakeHeap(self, a: list[int], depth: int):
 
         array_size = 2 ** (depth + 1) - 1
-        self.HeapArray = a + [None] * (array_size - len(a))
+        self.HeapArray = [None] * array_size
+
+        for key in a:
+            self.Add(key)
+        # self.HeapArray = a + [None] * (array_size - len(a))
+
+        # for i in range((len(self.HeapArray) // 2), 0):
+        #     self._swap_with_child(i)
 
     def GetMax(self) -> int:
 
@@ -35,6 +42,10 @@ class Heap:
 
         left_child_index = root_index * 2 + 1
         right_child_index = root_index * 2 + 2
+
+        print(f"ROOT INDEX {root_index}")
+        print(f"LEFT CHILD {left_child_index}")
+        print(f"RIGHT CHILD {right_child_index}")
 
         if self.HeapArray[left_child_index] is not None and self.HeapArray[root_index] < self.HeapArray[left_child_index]:
             self.HeapArray[root_index], self.HeapArray[left_child_index] = (
