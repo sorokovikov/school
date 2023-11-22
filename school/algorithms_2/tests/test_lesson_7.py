@@ -20,22 +20,22 @@ class TestLesson7(TestCase):
     def test_get_max(self):
 
         self.assertEqual(11, self.heap.GetMax())
-        self.assertListEqual([9, 8, 4, 6, 7, 3, 1, 2, 5, None, None, None, None, None, None], self.heap.HeapArray)
+        self.assertListEqual([9, 8, 7, 5, 3, 2, 6, 1, 4, None, None, None, None, None, None], self.heap.HeapArray)
 
         self.assertEqual(9, self.heap.GetMax())
-        self.assertListEqual([8, 7, 4, 5, 6, 3, 1, 2, None, None, None, None, None, None, None], self.heap.HeapArray)
+        self.assertListEqual([8, 5, 7, 4, 3, 2, 6, 1, None, None, None, None, None, None, None], self.heap.HeapArray)
 
         self.assertEqual(8, self.heap.GetMax())
-        self.assertListEqual([7, 6, 4, 2, 5, 3, 1, None, None, None, None, None, None, None, None], self.heap.HeapArray)
+        self.assertListEqual([7, 5, 6, 4, 3, 2, 1, None, None, None, None, None, None, None, None], self.heap.HeapArray)
 
         self.assertEqual(7, self.heap.GetMax())
-        self.assertListEqual([6, 5, 4, 1, 2, 3, None, None, None, None, None, None, None, None, None], self.heap.HeapArray)
+        self.assertListEqual([6, 5, 2, 4, 3, 1, None, None, None, None, None, None, None, None, None], self.heap.HeapArray)
 
         self.assertEqual(6, self.heap.GetMax())
-        self.assertListEqual([5, 3, 4, 1, 2, None, None, None, None, None, None, None, None, None, None], self.heap.HeapArray)
+        self.assertListEqual([5, 4, 2, 1, 3, None, None, None, None, None, None, None, None, None, None], self.heap.HeapArray)
 
         self.assertEqual(5, self.heap.GetMax())
-        self.assertListEqual([4, 2, 3, 1, None, None, None, None, None, None, None, None, None, None, None], self.heap.HeapArray)
+        self.assertListEqual([4, 3, 2, 1, None, None, None, None, None, None, None, None, None, None, None], self.heap.HeapArray)
 
         self.assertEqual(4, self.heap.GetMax())
         self.assertListEqual([3, 1, 2, None, None, None, None, None, None, None, None, None, None, None, None], self.heap.HeapArray)
@@ -54,23 +54,21 @@ class TestLesson7(TestCase):
     def test_add(self):
 
         self.assertTrue(self.heap.Add(10))
-        self.assertListEqual([11, 10, 4, 7, 9, 3, 1, 2, 5, 6, 8, None, None, None, None], self.heap.HeapArray)
+        self.assertListEqual([11, 10, 7, 5, 9, 2, 6, 1, 4, 3, 8, None, None, None, None], self.heap.HeapArray)
 
         self.assertTrue(self.heap.Add(12))
-        self.assertListEqual([12, 10, 11, 7, 9, 4, 1, 2, 5, 6, 8, 3, None, None, None], self.heap.HeapArray)
+        self.assertListEqual([12, 10, 11, 5, 9, 7, 6, 1, 4, 3, 8, 2, None, None, None], self.heap.HeapArray)
 
         self.assertTrue(self.heap.Add(14))
-        self.assertListEqual([14, 10, 12, 7, 9, 11, 1, 2, 5, 6, 8, 3, 4, None, None], self.heap.HeapArray)
+        self.assertListEqual([14, 10, 12, 5, 9, 11, 6, 1, 4, 3, 8, 2, 7, None, None], self.heap.HeapArray)
 
         self.assertTrue(self.heap.Add(20))
-        self.assertListEqual([20, 10, 14, 7, 9, 11, 12, 2, 5, 6, 8, 3, 4, 1, None], self.heap.HeapArray)
+        self.assertListEqual([20, 10, 14, 5, 9, 11, 12, 1, 4, 3, 8, 2, 7, 6, None], self.heap.HeapArray)
 
-        self.assertTrue(self.heap.Add(100))
-        self.assertListEqual([100, 10, 20, 7, 9, 11, 14, 2, 5, 6, 8, 3, 4, 1, 12], self.heap.HeapArray)
+        self.assertTrue(self.heap.Add(13))
+        self.assertListEqual([20, 10, 14, 5, 9, 11, 13, 1, 4, 3, 8, 2, 7, 6, 12], self.heap.HeapArray)
 
         self.assertFalse(self.heap.Add(100500))
 
-
-
-
-
+        self.assertEqual(20, self.heap.GetMax())
+        self.assertListEqual([14, 10, 13, 5, 9, 11, 12, 1, 4, 3, 8, 2, 7, 6, None], self.heap.HeapArray)
