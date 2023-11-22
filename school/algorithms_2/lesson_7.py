@@ -43,10 +43,6 @@ class Heap:
         left_child_index = root_index * 2 + 1
         right_child_index = root_index * 2 + 2
 
-        print(f"ROOT INDEX {root_index}")
-        print(f"LEFT CHILD {left_child_index}")
-        print(f"RIGHT CHILD {right_child_index}")
-
         if self.HeapArray[left_child_index] is not None and self.HeapArray[root_index] < self.HeapArray[left_child_index]:
             self.HeapArray[root_index], self.HeapArray[left_child_index] = (
                 self.HeapArray[left_child_index], self.HeapArray[root_index]
