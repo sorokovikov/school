@@ -51,6 +51,24 @@ class TestLesson7(TestCase):
 
         self.assertEqual(-1, self.heap.GetMax())
 
+        heap_2 = Heap()
+        heap_2.MakeHeap([110, 90, 40, 70, 80, 30, 10, 20, 50, 60, 65, 31, 29, 11, 9], 3)
+        self.assertEqual(110, heap_2.GetMax())
+        self.assertEqual(90, heap_2.GetMax())
+        self.assertEqual(80, heap_2.GetMax())
+        self.assertEqual(70, heap_2.GetMax())
+        self.assertEqual(65, heap_2.GetMax())
+        self.assertEqual(60, heap_2.GetMax())
+        self.assertEqual(50, heap_2.GetMax())
+        self.assertEqual(40, heap_2.GetMax())
+        self.assertEqual(31, heap_2.GetMax())
+        self.assertEqual(30, heap_2.GetMax())
+        self.assertEqual(29, heap_2.GetMax())
+        self.assertEqual(20, heap_2.GetMax())
+        self.assertEqual(11, heap_2.GetMax())
+        self.assertEqual(10, heap_2.GetMax())
+        self.assertEqual(9, heap_2.GetMax())
+
     def test_add(self):
 
         self.assertTrue(self.heap.Add(10))

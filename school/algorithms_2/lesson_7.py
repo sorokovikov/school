@@ -41,6 +41,9 @@ class Heap:
 
     def _swap_with_child(self, root_index: int) -> None:
 
+        if 2 * root_index + 1 >= len(self.HeapArray):
+            return
+
         left_child_index = root_index * 2 + 1
         right_child_index = root_index * 2 + 2
 
@@ -49,7 +52,7 @@ class Heap:
 
         max_child_index = left_child_index
 
-        if self.HeapArray[right_child_index] is not None:
+        if right_child_index < len(self.HeapArray) and self.HeapArray[right_child_index] is not None:
             max_child_index = left_child_index if self.HeapArray[left_child_index] >= self.HeapArray[right_child_index] else right_child_index
 
         if self.HeapArray[max_child_index] > self.HeapArray[root_index]:
