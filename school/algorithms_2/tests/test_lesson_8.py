@@ -23,8 +23,11 @@ class TestLesson8(TestCase):
     def test_is_edge(self):
 
         self.assertTrue(self.sg.IsEdge(0, 2))
+        self.assertTrue(self.sg.IsEdge(2, 0))
         self.assertTrue(self.sg.IsEdge(0, 3))
+        self.assertTrue(self.sg.IsEdge(3, 0))
         self.assertTrue(self.sg.IsEdge(1, 3))
+        self.assertTrue(self.sg.IsEdge(3, 1))
 
         self.assertFalse(self.sg.IsEdge(0, 1))
         self.assertFalse(self.sg.IsEdge(1, 2))

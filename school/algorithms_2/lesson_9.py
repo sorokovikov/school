@@ -113,3 +113,22 @@ class SimpleTree:
 
         for child in root.Children:
             self._set_level(child, level + 1)
+
+    def EvenTrees(self) -> list[SimpleTreeNode]:
+
+        if self.Root is None:
+            return []
+
+        node_pairs: list[SimpleTreeNode] = []
+        self._even_trees(self.Root, node_pairs)
+        return node_pairs
+
+    def _even_trees(self, root: SimpleTreeNode, node_pairs: list[SimpleTreeNode]) -> None:
+
+        for child in root.Children:
+            if SimpleTree(child).Count() % 2 == 0:
+                node_pairs.append(root)
+                node_pairs.append(child)
+            self._even_trees(child, node_pairs)
+
+
