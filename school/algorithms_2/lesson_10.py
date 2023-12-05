@@ -97,14 +97,12 @@ class SimpleGraph:
         self.vertex[v_from].visit()
         stack.append(self.vertex[v_from])
 
-        adjacent_vertices = self.__get_adjacent_vertices(v_from)
-
-        if v_to in adjacent_vertices:
+        if self.IsEdge(v_from, v_to):
             self.vertex[v_to].visit()
             stack.append(self.vertex[v_to])
             return stack
 
-        for adjacent_vertex in adjacent_vertices:
+        for adjacent_vertex in self.__get_adjacent_vertices(v_from):
             if not self.vertex[adjacent_vertex].is_visited():
                 return self.__depth_first_search(adjacent_vertex, v_to, stack)
 
@@ -122,7 +120,7 @@ class SimpleGraph:
         adjacent_vertices: list[int] = []
 
         for i in range(self.max_vertex):
-            if self.m_adjacency[parent_vertex][i] == 1:
+            if self.IsEdge(parent_vertex, i):
                 adjacent_vertices.append(i)
         return adjacent_vertices
 
